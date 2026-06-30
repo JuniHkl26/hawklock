@@ -830,13 +830,30 @@ const loadText = document.getElementById('load-text');
 const loader = document.getElementById('loader');
 const texts = ['INICIALIZANDO...','CARGANDO PRODUCTOS...','CONECTANDO RED...','HAWK LOCK READY'];
 let ti = 0;
-document.querySelector('.load-logo').classList.add('in');
-setTimeout(() => { loadFill.style.width = '25%'; loadText.textContent = texts[1]; }, 300);
-setTimeout(() => { loadFill.style.width = '55%'; loadText.textContent = texts[2]; }, 1000);
-setTimeout(() => { loadFill.style.width = '85%'; }, 1900);
-function cerrarLoader(){ loadFill.style.width='100%'; loadText.textContent=texts[3]; setTimeout(()=>{ loader.classList.add('done'); },500); }
-if(document.readyState==='complete'){ setTimeout(cerrarLoader, 2500); } else { window.addEventListener('load', ()=>{ setTimeout(cerrarLoader, 2500); }); setTimeout(cerrarLoader, 5000); }
+window.addEventListener('DOMContentLoaded', function(){
+  const loadFill = document.getElementById('load-fill');
+  const loadText = document.getElementById('load-text');
+  const loader = document.getElementById('loader');
+  const texts = ['INICIALIZANDO...','CARGANDO PRODUCTOS...','CONECTANDO RED...','HAWK LOCK READY'];
 
+  document.querySelector('.load-logo').classList.add('in');
+  setTimeout(() => { loadFill.style.width = '25%'; loadText.textContent = texts[1]; }, 300);
+  setTimeout(() => { loadFill.style.width = '55%'; loadText.textContent = texts[2]; }, 1000);
+  setTimeout(() => { loadFill.style.width = '85%'; }, 1900);
+
+  function cerrarLoader(){
+    loadFill.style.width = '100%';
+    loadText.textContent = texts[3];
+    setTimeout(() => { loader.classList.add('done'); }, 500);
+  }
+
+  if(document.readyState === 'complete'){
+    setTimeout(cerrarLoader, 2500);
+  } else {
+    window.addEventListener('load', () => { setTimeout(cerrarLoader, 2500); });
+    setTimeout(cerrarLoader, 5000);
+  }
+});
 // ── CURSOR ──
 const cur = document.getElementById('cur');
 const curR = document.getElementById('cur-r');
