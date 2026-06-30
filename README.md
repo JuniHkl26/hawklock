@@ -1,2 +1,0 @@
-# HAWK-LOCK
-Facturación 
